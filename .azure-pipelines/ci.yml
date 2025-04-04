@@ -1,0 +1,44 @@
+trigger:
+  branches:
+    include:
+      - main  # Trigger only on main branch commits
+
+pool:
+  name: MyPool  # Your self-hosted agent pool
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+
+# ✅ Install .NET 8 SDK
+- task: UseDotNet@2
+  displayName: 'Install .NET 8 SDK'
+  inputs:
+    packageType: 'sdk'
+    version: '8.0.407'
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
+# ✅ Install NuGet CLI (required for push/auth)
+- task: NuGetToolInstaller@1
+  displayName: 'Install NuGet CLI'
+
+# ✅ Authenticate to Azure Artifacts feed
+- task: NuGetAuthenticate@1
+  displayName: 'Authenticate to Azure Artifacts'
+
+# ✅ Build the project
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'Build project'
+
+# ✅ Pack the project into a .nupkg NuGet package
+- script: dotnet pack --configuration $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)
+  displayName: 'Pack NuGet package'
+
+# ✅ Push the package to Azure Artifacts (skip duplicates)
+- task: DotNetCoreCLI@2
+  displayName: 'Push package to Azure Artifacts'
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    publishVstsFeed: 'StringExtensionsCIStringFeed'
