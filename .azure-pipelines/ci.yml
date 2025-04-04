@@ -41,4 +41,4 @@ steps:
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-    publishVstsFeed: 'StringExtensionsCIStringFeed'
+    publishVstsFeed: 'StringExtensionsCI/StringFeed'
