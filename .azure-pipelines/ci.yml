@@ -28,5 +28,5 @@ steps:
     inputs:
       command: 'push'
       packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-      publishVstsFeed: 'BestBoss7DevOps/StringFeed'
+      publishVstsFeed: 'BestBoss7DevOps/StringExtensionsCI/StringFeed'
       allowPackageConflicts: true
