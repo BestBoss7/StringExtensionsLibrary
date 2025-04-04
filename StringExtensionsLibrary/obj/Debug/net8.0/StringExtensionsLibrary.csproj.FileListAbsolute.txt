@@ -1,0 +1,11 @@
+C:\Users\Administrator\Desktop\currenttask\StringExtensionsLibrary\StringExtensionsLibrary\bin\Debug\net8.0\StringExtensionsLibrary.deps.json
+C:\Users\Administrator\Desktop\currenttask\StringExtensionsLibrary\StringExtensionsLibrary\bin\Debug\net8.0\StringExtensionsLibrary.dll
+C:\Users\Administrator\Desktop\currenttask\StringExtensionsLibrary\StringExtensionsLibrary\bin\Debug\net8.0\StringExtensionsLibrary.pdb
+C:\Users\Administrator\Desktop\currenttask\StringExtensionsLibrary\StringExtensionsLibrary\obj\Debug\net8.0\StringExtensionsLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Administrator\Desktop\currenttask\StringExtensionsLibrary\StringExtensionsLibrary\obj\Debug\net8.0\StringExtensionsLibrary.AssemblyInfoInputs.cache
+C:\Users\Administrator\Desktop\currenttask\StringExtensionsLibrary\StringExtensionsLibrary\obj\Debug\net8.0\StringExtensionsLibrary.AssemblyInfo.cs
+C:\Users\Administrator\Desktop\currenttask\StringExtensionsLibrary\StringExtensionsLibrary\obj\Debug\net8.0\StringExtensionsLibrary.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\currenttask\StringExtensionsLibrary\StringExtensionsLibrary\obj\Debug\net8.0\StringExtensionsLibrary.dll
+C:\Users\Administrator\Desktop\currenttask\StringExtensionsLibrary\StringExtensionsLibrary\obj\Debug\net8.0\refint\StringExtensionsLibrary.dll
+C:\Users\Administrator\Desktop\currenttask\StringExtensionsLibrary\StringExtensionsLibrary\obj\Debug\net8.0\StringExtensionsLibrary.pdb
+C:\Users\Administrator\Desktop\currenttask\StringExtensionsLibrary\StringExtensionsLibrary\obj\Debug\net8.0\ref\StringExtensionsLibrary.dll

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>StringExtensionsLibrary</id>
+    <version>1.0.0</version>
+    <authors>Jayant Mangla</authors>
+    <description>A .NET 8 class library that adds an extension method to check if a string starts with an uppercase letter.</description>
+    <repository type="git" />
+    <dependencies>
+      <group targetFramework="net8.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\Administrator\Desktop\currenttask\StringExtensionsLibrary\StringExtensionsLibrary\bin\Release\net8.0\StringExtensionsLibrary.dll" target="lib\net8.0\StringExtensionsLibrary.dll" />
+  </files>
+</package>

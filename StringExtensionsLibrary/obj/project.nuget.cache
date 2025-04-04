@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "D6Ann/d8VWs=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Administrator\\Desktop\\currenttask\\StringExtensionsLibrary\\StringExtensionsLibrary\\StringExtensionsLibrary.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.12\\microsoft.netcore.app.ref.8.0.12.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.12\\microsoft.windowsdesktop.app.ref.8.0.12.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.12\\microsoft.aspnetcore.app.ref.8.0.12.nupkg.sha512"
+  ],
+  "logs": []
+}
