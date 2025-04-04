@@ -1,0 +1,44 @@
+trigger:
+  branches:
+    include:
+      - main  
+
+pool:
+  name: MyPool  
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+
+  # ✅ Install .NET 8 SDK
+  - task: UseDotNet@2
+    displayName: 'Install .NET 8 SDK'
+    inputs:
+      packageType: 'sdk'
+      version: '8.0.407'
+      installationPath: $(Agent.ToolsDirectory)/dotnet
+
+  # ✅ Install NuGet CLI
+  - task: NuGetToolInstaller@1
+    displayName: 'Install NuGet CLI'
+
+  # ✅ Build the project
+  - script: dotnet build --configuration $(buildConfiguration)
+    displayName: 'Build project'
+
+  # ✅ Pack the project into a NuGet package
+  - script: dotnet pack --configuration $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)
+    displayName: 'Pack NuGet package'
+
+  # ✅ Authenticate to Azure Artifacts
+  - task: NuGetAuthenticate@1
+    displayName: 'Authenticate with Azure Artifacts'
+
+  # ✅ Push .nupkg file to Azure Artifacts
+  - task: DotNetCoreCLI@2
+    displayName: 'Push package to Azure Artifacts'
+    inputs:
+      command: 'push'
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+      publishVstsFeed: 'StringExtensionsCI/StringFeed'
