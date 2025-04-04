@@ -2,28 +2,34 @@ trigger:
   - main
 
 pool:
-  name: MyPool  # your self-hosted agent
+  name: MyPool  # Your self-hosted agent pool name
 
 variables:
   buildConfiguration: 'Release'
 
 steps:
+  # Install .NET 8.0.407 SDK
   - task: UseDotNet@2
     inputs:
       packageType: 'sdk'
       version: '8.0.407'
       installationPath: $(Agent.ToolsDirectory)/dotnet
 
+  # Install NuGet CLI
   - task: NuGetToolInstaller@1
 
+  # Restore & Build project
   - script: dotnet build --configuration $(buildConfiguration)
     displayName: 'Build project'
 
+  # Pack into .nupkg
   - script: dotnet pack --configuration $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)
     displayName: 'Pack NuGet package'
 
+  # Authenticate to Azure Artifacts
   - task: NuGetAuthenticate@1
 
+  # Push .nupkg to Azure Artifacts
   - task: NuGetCommand@2
     inputs:
       command: 'push'
