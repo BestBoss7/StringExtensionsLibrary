@@ -1,0 +1,32 @@
+trigger:
+  - main
+
+pool:
+  name: MyPool  # your self-hosted agent
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+  - task: UseDotNet@2
+    inputs:
+      packageType: 'sdk'
+      version: '8.0.407'
+      installationPath: $(Agent.ToolsDirectory)/dotnet
+
+  - task: NuGetToolInstaller@1
+
+  - script: dotnet build --configuration $(buildConfiguration)
+    displayName: 'Build project'
+
+  - script: dotnet pack --configuration $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)
+    displayName: 'Pack NuGet package'
+
+  - task: NuGetAuthenticate@1
+
+  - task: NuGetCommand@2
+    inputs:
+      command: 'push'
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+      publishVstsFeed: 'BestBoss7DevOps/StringFeed'
+      allowPackageConflicts: true
