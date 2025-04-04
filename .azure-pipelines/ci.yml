@@ -1,5 +1,7 @@
 trigger:
-  - main
+  branches:
+    include:
+      - main  # 🔧 Fix: use proper trigger format
 
 pool:
   name: MyPool  # Your self-hosted agent pool name
@@ -8,31 +10,35 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-  # Install .NET 8.0.407 SDK
+
+  # ✅ Install .NET 8 SDK
   - task: UseDotNet@2
+    displayName: 'Install .NET 8 SDK'
     inputs:
       packageType: 'sdk'
       version: '8.0.407'
       installationPath: $(Agent.ToolsDirectory)/dotnet
 
-  # Install NuGet CLI
+  # ✅ Install NuGet CLI
   - task: NuGetToolInstaller@1
+    displayName: 'Install NuGet CLI'
 
-  # Restore & Build project
+  # ✅ Build the project
   - script: dotnet build --configuration $(buildConfiguration)
     displayName: 'Build project'
 
-  # Pack into .nupkg
+  # ✅ Pack the project into a NuGet package
   - script: dotnet pack --configuration $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)
     displayName: 'Pack NuGet package'
 
-  # Authenticate to Azure Artifacts
+  # ✅ Authenticate to Azure Artifacts
   - task: NuGetAuthenticate@1
+    displayName: 'Authenticate with Azure Artifacts'
 
-  # Push .nupkg to Azure Artifacts
-  - task: NuGetCommand@2
+  # ✅ Push .nupkg file to Azure Artifacts
+  - task: DotNetCoreCLI@2
+    displayName: 'Push package to Azure Artifacts'
     inputs:
       command: 'push'
       packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
-      publishVstsFeed: 'BestBoss7DevOps/StringExtensionsCI/_packaging/StringFeed'
-      allowPackageConflicts: true
+      publishVstsFeed: 'BestBoss7DevOps/StringExtensionsCI/_packaging/MyFeed'
